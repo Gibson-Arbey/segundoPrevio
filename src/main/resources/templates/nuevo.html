@@ -1,60 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-<meta charset="utf-8">
-<title>Agregar seleccion</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-	</head>
-	<body>
-		<nav class="navbar navbar-dark bg-dark">
-			<a class="navbar-brand" th:href="@{/selecciones}"> Selecciones <img
-				src="https://w7.pngwing.com/pngs/894/405/png-transparent-bookmark-computer-icons-category-folders-angle-text-rectangle.png"
-				width="30" height="30" class="d-inline-block align-top" alt="">
-		</nav>
-		<br>
-		<h1 th:if="${selecciones.id == null}" class="h1" style="text-align: center;">Nueva seleccion</h1>
-    <h1 th:if="${selecciones.id != null}" class="h1" style="text-align: center;">Actualizar seleccion</h1>
+<head>
+    <meta charset="utf-8">
+    <title>Agregar selección</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" th:href="@{/selecciones}"> Selecciones <img
+                src="https://w7.pngwing.com/pngs/894/405/png-transparent-bookmark-computer-icons-category-folders-angle-text-rectangle.png"
+                width="30" height="30" class="d-inline-block align-top" alt="">
+    </a>
+</nav>
+<br>
+<h1 th:if="${selecciones.id == null}" class="h1" style="text-align: center;">Nueva selección</h1>
+<h1 th:if="${selecciones.id != null}" class="h1" style="text-align: center;">Actualizar selección</h1>
 
-    <form method="post" th:action="@{/selecciones/agregar}" th:object="${selecciones}">
-   
-        <div class="form-group row">
-         	<input type="hidden" name="id"  th:if="${selecciones.id != null}" th:field="*{id}" />
-         	
-         	<label for="nombre" class="col-sm-2 col-form-label" >Nombre:</label>
-	        <div class="col-sm-10">
-	            <input class="form-control" type="text" name="nombre" th:field="*{nombre}" th:value="${selecciones.nombre}"required />	 
-            </div>
-            
-            <label for="categoria" class="col-sm-2 col-form-label" >Continente:</label>
-	        <div class="col-sm-10">
+<form method="post" th:action="@{/selecciones/agregar}" th:object="${selecciones}">
+    <div class="form-group row">
+        <input type="hidden" name="id" th:if="${selecciones.id != null}" th:value="${selecciones.id}" />
 
-	             <select name="continente" th:field="*{continente.id}" required >
-					<option value="">Seleccione un continente</option>
-					<option th:each="cont : ${continentes}"
-						th:value="${cont.id}" th:text="${cont.nombre}"></option>
-				</select>
-			</div>
-            <br>
-            <br>
-       		<label for="grupo" class="col-sm-2 col-form-label" >Grupo:</label>
-	        <div class="col-sm-10">
-	            <input class="form-control" type="text" name="grupo" th:field="*{grupo}" th:value="${selecciones.grupo}" /> 
-            </div>
+        <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" name="nombre" th:field="*{nombre}" required />
         </div>
 
-		<div class="form-group row">
-			<div class="col-sm-10">
-				<button type="submit"  th:text="${selecciones.id == null ? 'Agregar' : 'Actualizar'}"
-        		class="btn btn-success" style="background-color:#343a40; border:none">Guardar</button>
-			</div>
-			
-			
-		</div>
-		
-    </form>
+        <label for="continente" class="col-sm-2 col-form-label">Continente:</label>
+        <div class="col-sm-10">
+            <select name="continente" th:field="*{continente}" required>
+                <option value="">Seleccione un continente</option>
+                <option th:each="cont : ${continentes}" th:value="${cont.id}" th:text="${cont.nombre}"></option>
+            </select>
+        </div>
+
+        <label for="grupo" class="col-sm-2 col-form-label">Grupo:</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" name="grupo" th:field="*{grupo}" th:value="${selecciones.grupo}" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" th:text="${selecciones.id == null ? 'Agregar' : 'Actualizar'}"
+                    class="btn btn-success" style="background-color:#343a40; border:none">Guardar
+            </button>
+        </div>
+    </div>
+</form>
 
 </body>
 </html>
