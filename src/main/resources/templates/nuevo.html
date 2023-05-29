@@ -31,17 +31,17 @@
             <label for="categoria" class="col-sm-2 col-form-label" >Continente:</label>
 	        <div class="col-sm-10">
 
-	             <select name="continente" th:field="*{continentes.id}" required >
+	             <select name="continente" th:field="*{continente.id}" required >
 					<option value="">Seleccione un continente</option>
 					<option th:each="cont : ${continentes}"
-						th:value="${cont.id}" th:text="${cont.nombres}"></option>
+						th:value="${cont.id}" th:text="${cont.nombre}"></option>
 				</select>
 			</div>
             <br>
             <br>
        		<label for="grupo" class="col-sm-2 col-form-label" >Grupo:</label>
 	        <div class="col-sm-10">
-	            <input class="form-control" type="text" name="grupo" th:field="*{grupo}" th:value="${selecciones.nombre}" /> 
+	            <input class="form-control" type="text" name="grupo" th:field="*{grupo}" th:value="${selecciones.grupo}" /> 
             </div>
         </div>
 

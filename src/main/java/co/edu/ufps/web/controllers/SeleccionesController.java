@@ -84,4 +84,17 @@ public class SeleccionesController {
         return "redirect:/selecciones";
     }
 	
+	 @GetMapping("/grupo/{grupo}")
+		public String getGrupobyId(@PathVariable String grupo, Model model) {
+			
+	        List<Seleccion> seleccion = seleccionRepository.findByGrupo(grupo);
+			
+			if (!seleccion.isEmpty()) {
+				model.addAttribute("grupo", seleccion);
+				return "grupo";
+			}
+			
+			return "";
+		}
+	
 }
