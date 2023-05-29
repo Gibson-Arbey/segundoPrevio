@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<htmlxmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 <meta charset="utf-8">
 <title>Selecciones</title>
@@ -35,9 +35,11 @@
 				<tr th:each="seleccion: ${selecciones}">
 					<td th:text="${seleccion.id}"></td>
 					<td th:text="${seleccion.nombre}"></td>
-					<td th:text="${seleccion.continente.id}"></td>
+					<td th:text="${seleccion.continente.nombre}"></td>
 					<td th:text="${seleccion.grupo}"></td>
-					<td><a>Editar</a> <a>Eliminar</a></td>
+					<td>
+						<a th:href="@{/selecciones/form(id=${seleccion.id})}">Editar</a> 
+						<a th:href="@{/selecciones/borrar/{id}(id=${seleccion.id})}">Eliminar</a></td>
 				</tr>
 			</tbody>
 		</table>
