@@ -65,6 +65,10 @@ public class SeleccionesController {
 	
 	@GetMapping("/editar")
 	public String actualizar(@RequestParam("id") int id, @ModelAttribute("selecciones") Seleccion seleccionActualizada, BindingResult result) {
+		 if (result.hasErrors()) {
+	            return "nuevo";
+	        }
+		
 		Seleccion seleccion = seleccionRepository.findById(id)
              .orElseThrow(() -> new IllegalArgumentException("Seleccion no encontrada con id: " + id));
 		seleccion.setNombre(seleccionActualizada.getNombre());
